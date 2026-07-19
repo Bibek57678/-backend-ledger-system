@@ -3,10 +3,6 @@ const jwt = require("jsonwebtoken")
 const emailService = require("../src/services/email.service")
 const tokenBlackListModel = require("../models/blackList.model")
 
-/**
-* - user register controller
-* - POST /api/auth/register
-*/
 async function userRegisterController(req, res) {
     const { email, password, name } = req.body
 
@@ -41,10 +37,6 @@ async function userRegisterController(req, res) {
     await emailService.sendRegistrationEmail(user.email, user.name)
 }
 
-/**
- * - User Login Controller
- * - POST /api/auth/login
-  */
 
 async function userLoginController(req, res) {
     const { email, password } = req.body
@@ -79,12 +71,6 @@ async function userLoginController(req, res) {
     })
 
 }
-
-
-/**
- * - User Logout Controller
- * - POST /api/auth/logout
-  */
 async function userLogoutController(req, res) {
     const token = req.cookies.token || req.headers.authorization?.split(" ")[ 1 ]
 
